@@ -61,6 +61,53 @@ public class BinarySearchTree {
 			
 		}
 	}
+	
+	public Node deleteNode(Node root, int element){
+		//System.out.println("Deleting element "+ element);
+		//System.out.println("Current element " +root.data);
+		
+	try{
+		
+		
+		if(element < root.data){
+			root.left = deleteNode(root.left, element); // recurse down the left subtree
+		}
+		else if(element > root.data){
+			root.right = deleteNode(root.right, element); //recurse the right subtree
+		}
+		else{  // If element is the same as root element, then this is the element to be deleted
+				
+		// Case 1 - Node with only 1 child
+			if(root.left == null){
+					return root.right;
+				}
+				else if(root.right == null){
+					return root.left;
+				}
+			
+		// Case 2 -  Node with 2 children, Get the inorder successor
+				root.data = minVaue(root.right);
+				
+				root.right = deleteNode(root.right, element);
+		}
+		return root;
+	}
+	catch(Exception e){
+			System.out.println("The node "+ root.data +" is not present inside the tree");
+			return root;
+			
+		}
+	}
+
+	public int minVaue(Node root) { // function to get the inorder successor
+		int minvalue = root.data;
+		while(root.left!= null){
+			minvalue = root.left.data;
+			root = root.left;
+		}
+		
+		return minvalue;
+	}
 
 	public static void main(String[] args) {
         BinarySearchTree tree = new BinarySearchTree();
@@ -80,6 +127,15 @@ public class BinarySearchTree {
         tree.insert(80);
         tree.search(tree.root, 60);
         tree.search(tree.root, 45);
-       // System.out.println(tree.root.data);
+        tree.deleteNode(tree.root, 20); // deleting left leaf node
+        System.out.println("The root element is " + tree.root.data );
+        tree.deleteNode(tree.root, 40);
+        tree.search(tree.root, 40);
+        System.out.println("The root element is " + tree.root.data );
+        tree.search(tree.root, 20);
+        tree.deleteNode(tree.root, 80);  // deleting right leaf node
+        tree.search(tree.root, 80);
+        System.out.println("The root element is " + tree.root.data );
+       
 	}
 }
