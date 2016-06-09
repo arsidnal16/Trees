@@ -1,7 +1,7 @@
 package Trees;
 
 /*
- * Searching in a binary search tree and inserting elements in it
+ * Searching, deleting and inserting elements in a binary search tree.
  * 
  * 
  */
