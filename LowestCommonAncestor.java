@@ -2,6 +2,10 @@ package Trees;
 
 public class LowestCommonAncestor {
 	
+	//lowest common ancestor (LCA) of two nodes 'i' and 'j' in a tree is the lowest node that has both 'i' and 'j' as descendants.
+	//Each node is considered descendant of itself .
+	
+	
 	Node root;
 	
 	
