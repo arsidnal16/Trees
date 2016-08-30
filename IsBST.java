@@ -7,11 +7,14 @@ public class IsBST {
 	Node root;
 	Node previous = null;
 	public boolean isBST(Node root){ // A function to check if tree is BST, returns true if tree is BST
-	
+		// An empty tree is a BST
+		
+		// traaverse the tree in inorder and keep a track of previous node
 		if(root!=null){
 			if(!isBST(root.left)){
 				return false;
 			}
+			// allows only distinct values node
 			if(previous != null && root.data <= previous.data){
 				return false;
 			}
