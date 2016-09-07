@@ -6,23 +6,29 @@ public class IsBST {
 	
 	Node root;
 	Node previous = null;
-	public boolean isBST(Node root){ // A function to check if tree is BST, returns true if tree is BST
-		// An empty tree is a BST
-		
-		// traaverse the tree in inorder and keep a track of previous node
-		if(root!=null){
-			if(!isBST(root.left)){
-				return false;
-			}
-			// allows only distinct values node
-			if(previous != null && root.data <= previous.data){
-				return false;
-			}
-			previous = root;
-			return isBST(root.right);
-		}
-		return true;
-	}
+	boolean isBST()  {
+        return isBSTUtil(root, Integer.MIN_VALUE,
+                               Integer.MAX_VALUE);
+    }
+ 
+    /* Returns true if the given tree is a BST and its
+      values are >= min and <= max. */
+    boolean isBSTUtil(Node node, int min, int max)
+    {
+        /* an empty tree is BST */
+        if (node == null)
+            return true;
+ 
+        /* false if this node violates the min/max constraints */
+        if (node.data < min || node.data > max)
+            return false;
+ 
+        /* otherwise check the subtrees recursively
+        tightening the min/max constraints */
+        // Allow only distinct values
+        return (isBSTUtil(node.left, min, node.data-1) &&
+                isBSTUtil(node.right, node.data+1, max));
+    }
 	
 	public static void main(String args[])
     {
